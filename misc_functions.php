@@ -38,27 +38,33 @@ class VimeoThumbnail {
   }
 }
 
+function downloadFile($url, $path)
+{
+    $newfname = $path;
+    echo $newfname;
 
-//
-// function downloadFile($url, $path)
-// {
-//     $newfname = $path;
-//     $file = fopen ($url, 'rb');
-//     if ($file) {
-//         $newf = fopen ($newfname, 'wb');
-//         if ($newf) {
-//             while(!feof($file)) {
-//                 fwrite($newf, fread($file, 1024 * 8), 1024 * 8);
-//             }
-//         }
-//     }
-//     if ($file) {
-//         fclose($file);
-//     }
-//     if ($newf) {
-//         fclose($newf);
-//     }
-// }
+    $file = fopen ($url, 'rb');
+    if ($file) {
+        $newf = fopen ($newfname, 'wb');
+        if ($newf) {
+            while(!feof($file)) {
+                fwrite($newf, fread($file, 1024 * 8), 1024 * 8);
+            }
+        }
+        else{
+          echo "Not exist";
+
+        }
+    }
+    if ($file) {
+        fclose($file);
+    }
+    if ($newf) {
+        fclose($newf);
+    }
+}
+
+
 
 function wp_vid_lightbox_vimeo5_handler($atts)
 {
@@ -78,6 +84,9 @@ function wp_vid_lightbox_vimeo5_handler($atts)
     }
 
     $output = "";
+
+
+
     //save file
     // $filename =  plugin_dir_path( __FILE__ )."/"."images"."/"+$video_id.".jpg";
 
@@ -123,9 +132,26 @@ function wp_vid_lightbox_vimeo5_handler($atts)
     // 	$anchor_replacement = $anchor;
     // }
 
-    $vim_thumb = new VimeoThumbnail($video_id);
+    // $vim_thumb = new VimeoThumbnail($video_id);
     // $vim_thumb
-    $output ='<img class="video_lightbox_anchor_image lazy" data-original="'.$vim_thumb->thumbnail.'" width="640" height="480">';
+
+    $dir = plugin_dir_path( __FILE__ );
+    $filename = $dir."/images/".$video_id.".jpg";
+
+    if(file_exists($filename)){
+         $iurl = plugin_dir_url(__FILE__ );
+         $iurl = $iurl ."/images/".$video_id.".jpg";
+         $output ='<img class="video_lightbox_anchor_image lazy" data-original="'.$iurl.'" width="640" height="480">';
+
+    }
+    else{
+       $thumb = new VimeoThumbnail($video_id);
+       downloadFile($thumb->thumbnail,$filename);
+       $output ='<img class="video_lightbox_anchor_image lazy" data-original="'.$thumb->thumbnail.'" width="640" height="480">';
+    }
+
+
+
     // $output = "<p>OK</p>";
 
     // $href_content = 'http://vimeo.com/'.$video_id.'?width='.$width.'&amp;height='.$height;
