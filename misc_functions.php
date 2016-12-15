@@ -141,13 +141,13 @@ function wp_vid_lightbox_vimeo5_handler($atts)
     if(file_exists($filename)){
          $iurl = plugin_dir_url(__FILE__ );
          $iurl = $iurl ."/images/".$video_id.".jpg";
-         $output ='<a rel="'.WPVL_PRETTYPHOTO_REL.'" href="'.$href_content.'" title="'.$description.'">'.'<img class="video_lightbox_anchor_image lazy" data-original="'.$iurl.'" width="640" height="480">.'</a>'';
+         $output ='<a rel="'.WPVL_PRETTYPHOTO_REL.'" href="'.$href_content.'" title="'.$description.'">'.'<img class="video_lightbox_anchor_image lazy" data-original="'.$iurl.'" width="640" height="480">.'</a>';
 
     }
     else{
        $thumb = new VimeoThumbnail($video_id);
        downloadFile($thumb->thumbnail,$filename);
-       $output ='<a rel="'.WPVL_PRETTYPHOTO_REL.'" href="'.$href_content.'" title="'.$description.'">'.'<img class="video_lightbox_anchor_image lazy" data-original="'.$thumb->thumbnail.'" width="640" height="480">.'</a>'';
+       $output ='<a rel="'.WPVL_PRETTYPHOTO_REL.'" href="'.$href_content.'" title="'.$description.'">'.'<img class="video_lightbox_anchor_image lazy" data-original="'.$thumb->thumbnail.'" width="640" height="480">.'</a>';
     }
 
 
