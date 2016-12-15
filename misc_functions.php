@@ -137,17 +137,31 @@ function wp_vid_lightbox_vimeo5_handler($atts)
 
     $dir = plugin_dir_path( __FILE__ );
     $filename = $dir."/images/".$video_id.".jpg";
+    $playBtn = '<a href="http://vimeo.com/189013807?width=800&amp;height=450" title="" style="
+                                                                     position:absolute;
+                                                                     z-index:1000;
+                                                                     background-image: url("https://maxcdn.icons8.com/Color/PNG/48/Media_Controls/circled_play-48.png");
+                                                                     background-repeat:no-repeat;
+                                                                     background-position:center center;
+                                                                     width: 48px;
+                                                                     margin: auto;                                                                              
+                                                                     left:0;
+                                                                     top:0;
+                                                                     right:0;
+                                                                     bottom:0;
+                                                                     height: 48px;
+"></a>';
 
-    if(file_exists($filename)){
+	if(file_exists($filename)){
          $iurl = plugin_dir_url(__FILE__ );
          $iurl = $iurl ."/images/".$video_id.".jpg";
-         $output ='<a rel="'.WPVL_PRETTYPHOTO_REL.'" href="'.$href_content.'" title="'.$description.'">'.'<img class="video_lightbox_anchor_image lazy" data-original="'.$iurl.'" width="640" height="480">'.'</a>';
+         $output ='<a rel="'.WPVL_PRETTYPHOTO_REL.'" href="'.$href_content.'" title="'.$description.'">'.'<img class="video_lightbox_anchor_image lazy" data-original="'.$iurl.'" width="640" height="480">'.'</a>'.$playBtn;
 
     }
     else{
        $thumb = new VimeoThumbnail($video_id);
        downloadFile($thumb->thumbnail,$filename);
-       $output ='<a rel="'.WPVL_PRETTYPHOTO_REL.'" href="'.$href_content.'" title="'.$description.'">'.'<img class="video_lightbox_anchor_image lazy" data-original="'.$thumb->thumbnail.'" width="640" height="480">'.'</a>';
+       $output ='<a rel="'.WPVL_PRETTYPHOTO_REL.'" href="'.$href_content.'" title="'.$description.'">'.'<img class="video_lightbox_anchor_image lazy" data-original="'.$thumb->thumbnail.'" width="640" height="480">'.'</a>'.$playBtn;
     }
 
 
