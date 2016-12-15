@@ -137,21 +137,7 @@ function wp_vid_lightbox_vimeo5_handler($atts)
 
     $dir = plugin_dir_path( __FILE__ );
     $filename = $dir."/images/".$video_id.".jpg";
-    $playBtn = '<a href="http://vimeo.com/189013807?width=800&amp;height=450" title="" style="
-                                                                     position:absolute;
-                                                                     z-index:1000;
-                                                                     background-image: url("https://maxcdn.icons8.com/Color/PNG/48/Media_Controls/circled_play-48.png");
-                                                                     background-repeat:no-repeat;
-                                                                     background-position:center center;
-                                                                     width: 48px;
-                                                                     margin: auto;                                                                              
-                                                                     left:0;
-                                                                     top:0;
-                                                                     right:0;
-                                                                     bottom:0;
-                                                                     height: 48px;
-"></a>';
-
+    $playBtn = '<a class="playBtn" href="'.$href_content.'" title=""></a>';
 	if(file_exists($filename)){
          $iurl = plugin_dir_url(__FILE__ );
          $iurl = $iurl ."/images/".$video_id.".jpg";
