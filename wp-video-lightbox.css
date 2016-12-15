@@ -1,3 +1,18 @@
+.playBtn{
+position:absolute;
+z-index:1000;
+background-image: url("https://maxcdn.icons8.com/Color/PNG/48/Media_Controls/circled_play-48.png");
+                                                                    background-repeat:no-repeat;
+                                                                    background-position:center center;
+                                                                    width: 48px;
+                                                                    margin: auto;
+                                                                    left:0;
+                                                                    top:0;
+                                                                    right:0;
+                                                                    bottom:0;
+                                                                    height: 48px;
+}
+
 
 .wpvl_auto_thumb_box{
     position: relative;
